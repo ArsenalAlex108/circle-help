@@ -1,0 +1,44 @@
+spring:
+  application:
+    name: CircleHelpStockArrangementMicroservice
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/circle_help_db
+    username: remote_root
+    password: admin
+    driverClassName: com.mysql.cj.jdbc.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+    #database-platform: org.hibernate.dialect.MySQL5Dialect
+    show-sql: false
+    properties.hibernate.transaction.jta.platform: org.hibernate.service.jta.platform.internal.BitsJtaPlatform
+
+  session:
+    jdbc:
+      initialize-schema: always
+
+  output.ansi.enabled: DETECT
+
+server:
+  port: 8001
+
+logging:
+  level:
+    org.springframework.security: trace
+  file.name: shelf.log
+
+jakarta:
+  persistence:
+    jdbc:
+      url: spring.datasource.url
+      user: spring.datasource.username
+      pass: spring.datasource.password
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
